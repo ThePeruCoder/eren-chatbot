@@ -1,0 +1,12 @@
+[project]
+name = "eren-chatbot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gradio>=6.5.0",
+    "groq>=1.0.0",
+    "python-dotenv>=1.2.1",
+    "pytz>=2025.2",
+]
