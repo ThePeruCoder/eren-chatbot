@@ -1,76 +1,68 @@
-# Eren Chatbot
+# ⚔️ Eren Yeager (Paths) Chatbot
 
-A Gradio-based chatbot that simulates Eren Yeager (Season 4/Paths) using the Groq API. This project provides an immersive conversational experience with the Attack Titan himself.
+![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/build-passing-brightgreen)
 
-## Features
+**A high-fidelity, roleplay-focused AI interface embodying Eren Yeager from Attack on Titan (Season 4).**
 
-- **Immersive Persona**: Interacts as Eren Yeager, maintaining character with a focus on freedom, fighting ("Tatakae"), and a weary but resolute tone.
-- **Gradio Interface**: A clean and simple web interface for chatting.
-- **Groq API Powered**: Utilizes the Llama 3.3 70B model via Groq for fast and high-quality responses.
-- **Contextual Awareness**: Loads a character summary from `summary.txt` to ground the persona.
+## 📖 What the project does
 
-## Prerequisites
+This project provides a local, web-based chat interface that simulates a conversation with Eren Yeager in the "Paths" dimension. It utilizes **Groq's Llama 3** inference engine for ultra-fast responses and **Gradio** for a clean, distraction-free user interface.
 
-- Python 3.12 or higher
-- A [Groq API Key](https://console.groq.com/keys)
+Unlike generic chatbots, this application is strictly governed by a dynamic system prompt (`summary.txt`) to maintain deep character immersion, refusing to break the "fourth wall" or act as a helpful assistant.
 
-## Installation
+## 🚀 Why the project is useful
 
-1.  **Clone the repository:**
+For developers and fans alike, this project demonstrates:
+* **Persona Injection:** How to enforce strict character guidelines using a decoupled text file rather than hard-coded strings.
+* **Resilient Architecture:** Implements a "Safe Mode" that prevents application crashes even if API keys or configuration files are missing.
+* **Concurrency Management:** Uses a queuing system to allow multiple simultaneous users on a single API key without triggering rate limits.
+* **Cost-Effective AI:** Leverages the Groq API for high-performance inference with minimal latency.
 
+## ⚡ How to get started
+
+### Prerequisites
+* Python 3.9 or higher
+* A Groq API Key (available for free at [console.groq.com](https://console.groq.com))
+
+### Installation
+
+1.  **Clone the repository**
     ```bash
-    git clone <repository-url>
+    git clone [https://github.com/YourUsername/eren-chatbot.git](https://github.com/YourUsername/eren-chatbot.git)
     cd eren-chatbot
     ```
 
-2.  **Set up a virtual environment (optional but recommended):**
-
+2.  **Set up the environment**
+    It is recommended to use a virtual environment:
     ```bash
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    # Using uv (Recommended)
+    uv venv
+    source .venv/bin/activate
+
+    # OR Using standard pip
+    python -m venv venv
+    source venv/bin/activate  # Windows: venv\Scripts\activate
     ```
 
-3.  **Install dependencies:**
-
-    This project uses `pyproject.toml`. You can install dependencies using `pip`:
-
+3.  **Install dependencies**
     ```bash
-    pip install -e .
+    pip install gradio groq python-dotenv
     ```
 
-    Or if you are using `uv`:
-
+4.  **Configuration**
+    Create a `.env` file in the root directory:
     ```bash
-    uv sync
+    touch .env
     ```
-
-4.  **Configure Environment Variables:**
-
-    Create a `.env` file in the root directory and add your Groq API key:
-
+    Open it and add your API Key:
     ```env
-    GROQ_API_KEY=your_groq_api_key_here
+    GROQ_API_KEY=gsk_your_actual_api_key_here
     ```
 
-## Usage
+### Usage
 
-1.  **Run the application:**
-
-    ```bash
-    python main.py
-    ```
-
-2.  **Access the chatbot:**
-
-    Open the URL provided in the terminal (usually `http://127.0.0.1:7860`) in your web browser.
-
-3.  **Chat:**
-
-    Start a conversation. Try asking "Why do you fight?" or "What is freedom?".
-
-## Project Structure
-
--   `main.py`: The main application script containing the `ErenChatbot` class and Gradio interface setup.
--   `summary.txt`: A text file containing the character profile and behavioral guidelines for Eren.
--   `pyproject.toml`: Project configuration and dependencies.
--   `.env`: (Not committed) Stores sensitive environment variables like the API key.
+Run the application:
+```bash
+python main.py
