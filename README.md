@@ -1,68 +1,115 @@
-# ⚔️ Eren Yeager (Paths) Chatbot
+# :zap: Eren Yeager  Chatbot
 
-![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/build-passing-brightgreen)
+A high-fidelity, immersion-focused roleplay chatbot that lets you converse with **Eren Yeager** from *Attack on Titan* (Season 4 — Paths / Founding Titan era).
 
-**A high-fidelity, roleplay-focused AI interface embodying Eren Yeager from Attack on Titan (Season 4).**
+This project runs **locally** and uses:
 
-## 📖 What the project does
+- **Groq** + **Llama 3** for extremely fast, low-cost inference  
+- **Gradio** for a clean, modern chat interface  
+- A powerful, externalized system prompt kept in `summary.txt` to strictly preserve character accuracy and prevent breaking roleplay
 
-This project provides a local, web-based chat interface that simulates a conversation with Eren Yeager in the "Paths" dimension. It utilizes **Groq's Llama 3** inference engine for ultra-fast responses and **Gradio** for a clean, distraction-free user interface.
+## 🔥 Key Features
 
-Unlike generic chatbots, this application is strictly governed by a dynamic system prompt (`summary.txt`) to maintain deep character immersion, refusing to break the "fourth wall" or act as a helpful assistant.
+- **Deep character fidelity** — Eren stays in character at all times (controlled via `summary.txt`)
+- **Safe Mode** — Gracefully handles missing API keys or config files without crashing
+- **Request queuing** — Supports multiple users / tabs even with a single Groq API key (avoids rate-limit errors)
+- **Very low latency** — thanks to Groq's LPU inference
+- **Easy to modify** — prompt lives in a plain text file → no need to touch code to tune personality
+- **Modern Python stack** — built around `uv` for fast & reproducible environments
 
-## 🚀 Why the project is useful
-
-For developers and fans alike, this project demonstrates:
-* **Persona Injection:** How to enforce strict character guidelines using a decoupled text file rather than hard-coded strings.
-* **Resilient Architecture:** Implements a "Safe Mode" that prevents application crashes even if API keys or configuration files are missing.
-* **Concurrency Management:** Uses a queuing system to allow multiple simultaneous users on a single API key without triggering rate limits.
-* **Cost-Effective AI:** Leverages the Groq API for high-performance inference with minimal latency.
-
-## ⚡ How to get started
+## 🚀 Quick Start
 
 ### Prerequisites
-* Python 3.9 or higher
-* A Groq API Key (available for free at [console.groq.com](https://console.groq.com))
+
+- Python **3.9** or higher
+- A free **Groq API key** → [https://console.groq.com/keys](https://console.groq.com/keys)
 
 ### Installation
 
-1.  **Clone the repository**
-    ```bash
-    git clone [https://github.com/YourUsername/eren-chatbot.git](https://github.com/YourUsername/eren-chatbot.git)
-    cd eren-chatbot
-    ```
+1. Clone the repository
 
-2.  **Set up the environment**
-    It is recommended to use a virtual environment:
-    ```bash
-    # Using uv (Recommended)
-    uv venv
-    source .venv/bin/activate
+   ```bash
+   git clone https://github.com/ThePeruCoder/eren-chatbot.git
+   cd eren-chatbot
+   ```
 
-    # OR Using standard pip
-    python -m venv venv
-    source venv/bin/activate  # Windows: venv\Scripts\activate
-    ```
+2. Create virtual environment & install dependencies with uv
 
-3.  **Install dependencies**
-    ```bash
-    pip install gradio groq python-dotenv
-    ```
+   ```bash
+   uv venv
+   source .venv/bin/activate      # Linux/macOS
+   # or on Windows:
+   # .venv\Scripts\activate
+   ```
 
-4.  **Configuration**
-    Create a `.env` file in the root directory:
-    ```bash
-    touch .env
-    ```
-    Open it and add your API Key:
-    ```env
-    GROQ_API_KEY=gsk_your_actual_api_key_here
-    ```
+   ```bash
+   uv pip install gradio groq python-dotenv
+   ```
 
-### Usage
+   (You only need to do steps 1–2 the first time)
 
-Run the application:
+3. Add your Groq API key
+
+   Create file `.env` in the project root:
+
+   ```bash
+   GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+
+### Run
+
 ```bash
-python main.py
+uv run main.py
+```
+
+→ Open the local URL shown in the terminal (usually http://127.0.0.1:7860)
+
+## 🎯 Character Behavior
+
+All personality, tone, worldview, memories, and response style rules are defined in [`summary.txt`](summary.txt).
+
+You can:
+
+- Edit it to adjust Eren's mood, vocabulary, aggression level, etc.
+- Add new memories / events without changing code
+- Strengthen / weaken certain traits (freedom obsession, rage, manipulation, etc.)
+
+The bot **will refuse** to break character or act like a generic assistant.
+
+## ⚙️ Tech Stack
+
+| Component       | Technology             | Purpose                              |
+|-----------------|------------------------|--------------------------------------|
+| Backend / LLM   | Groq + Llama 3         | Fast & cheap inference               |
+| Frontend        | Gradio                 | Clean chat UI                        |
+| Env vars        | python-dotenv          | Secure API key handling              |
+| Deps / env      | uv                     | Blazing fast package & venv manager  |
+| Concurrency     | Internal queue         | Rate-limit friendly multi-user       |
+
+## 📂 Project Structure
+
+```
+eren-chatbot/
+├── .github/prompts/         # (optional extra prompt examples)
+├── main.py                  # Application entry point
+├── summary.txt              # Core system prompt — edit this!
+├── .env                     # (create yourself) API keys live here
+├── pyproject.toml           # Project metadata
+├── uv.lock                  # Reproducible dependencies
+├── .gitignore
+└── README.md
+```
+
+## ⚠️ Notes & Limitations
+
+- Requires internet access (Groq API)
+- Free Groq tier has rate limits → queuing helps but heavy multi-user usage may still hit them
+- No built-in chat history persistence (yet)
+- No authentication — do **not** expose publicly without adding security
+
+## 📜 License
+
+MIT License 
+
+---
+
