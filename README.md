@@ -90,7 +90,6 @@ The bot **will refuse** to break character or act like a generic assistant.
 
 ```
 eren-chatbot/
-├── .github/prompts/         # (optional extra prompt examples)
 ├── main.py                  # Application entry point
 ├── summary.txt              # Core system prompt — edit this!
 ├── .env                     # (create yourself) API keys live here
