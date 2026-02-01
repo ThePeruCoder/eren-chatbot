@@ -68,10 +68,8 @@ class ErenChatbot:
                         messages.append({"role": "user", "content": str(user_msg)})
                         messages.append({"role": "assistant", "content": str(bot_msg)})
                 
-                # Handle Dict format (New Gradio) - THIS WAS THE CAUSE OF THE ERROR
+                # Handle Dict format
                 elif isinstance(turn, dict):
-                    # We must create a new dict with ONLY role and content.
-                    # Appending 'turn' directly sends 'metadata' which breaks Groq.
                     messages.append({
                         "role": turn.get("role"),
                         "content": turn.get("content")
