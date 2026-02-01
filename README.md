@@ -1,6 +1,10 @@
-# :zap: Eren Yeager  Chatbot
-
-A high-fidelity, immersion-focused roleplay chatbot that lets you converse with **Eren Yeager** from *Attack on Titan* (Season 4 — Paths / Founding Titan era).
+# Eren Yeager Chatbot
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Gradio](https://img.shields.io/badge/Gradio-UI-orange?style=for-the-badge&logo=gradio&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-API-purple?style=for-the-badge&logo=openai&logoColor=white)
+![uv](https://img.shields.io/badge/uv-Manager-black?style=for-the-badge&logo=rust&logoColor=white)
+## Demo
+![eren chatbot demo](assets/demo.gif)A high-fidelity, immersion-focused roleplay chatbot that lets you converse with **Eren Yeager** from *Attack on Titan* (Season 4 — Paths / Founding Titan era).
 
 This project runs **locally** and uses:
 
@@ -8,7 +12,7 @@ This project runs **locally** and uses:
 - **Gradio** for a clean, modern chat interface  
 - A powerful, externalized system prompt kept in `summary.txt` to strictly preserve character accuracy and prevent breaking roleplay
 
-## 🔥 Key Features
+## Key Features
 
 - **Deep character fidelity** — Eren stays in character at all times (controlled via `summary.txt`)
 - **Safe Mode** — Gracefully handles missing API keys or config files without crashing
@@ -17,54 +21,38 @@ This project runs **locally** and uses:
 - **Easy to modify** — prompt lives in a plain text file → no need to touch code to tune personality
 - **Modern Python stack** — built around `uv` for fast & reproducible environments
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
-
 - Python **3.9** or higher
+- [uv](https://github.com/astral-sh/uv) installed
 - A free **Groq API key** → [https://console.groq.com/keys](https://console.groq.com/keys)
 
 ### Installation
 
-1. Clone the repository
+1. **Clone the repository**
 
    ```bash
    git clone https://github.com/ThePeruCoder/eren-chatbot.git
    cd eren-chatbot
-   ```
-
-2. Create virtual environment & install dependencies with uv
-
-   ```bash
-   uv venv
-   source .venv/bin/activate      # Linux/macOS
-   # or on Windows:
-   # .venv\Scripts\activate
-   ```
+2. **Sync dependencies**
+   (This command automatically creates the virtual environment and installs dependencies from `uv.lock`)
 
    ```bash
-   uv pip install gradio groq python-dotenv
-   ```
-
-   (You only need to do steps 1–2 the first time)
-
-3. Add your Groq API key
-
-   Create file `.env` in the project root:
+   uv sync
+3. **Add your Groq API key**
+   Create a file named `.env` in the project root:
 
    ```bash
    GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+4. **Run**
+
+   ```bash
+   uv run main.py
    ```
+ Open the local URL shown in the terminal (usually http://127.0.0.1:7860)
 
-### Run
-
-```bash
-uv run main.py
-```
-
-→ Open the local URL shown in the terminal (usually http://127.0.0.1:7860)
-
-## 🎯 Character Behavior
+## Character Behavior
 
 All personality, tone, worldview, memories, and response style rules are defined in [`summary.txt`](summary.txt).
 
@@ -76,7 +64,7 @@ You can:
 
 The bot **will refuse** to break character or act like a generic assistant.
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Component       | Technology             | Purpose                              |
 |-----------------|------------------------|--------------------------------------|
@@ -86,7 +74,7 @@ The bot **will refuse** to break character or act like a generic assistant.
 | Deps / env      | uv                     | Blazing fast package & venv manager  |
 | Concurrency     | Internal queue         | Rate-limit friendly multi-user       |
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 eren-chatbot/
@@ -99,7 +87,7 @@ eren-chatbot/
 └── README.md
 ```
 
-## ⚠️ Notes & Limitations
+## Notes & Limitations
 
 - Requires internet access (Groq API)
 - Free Groq tier has rate limits → queuing helps but heavy multi-user usage may still hit them
@@ -108,7 +96,5 @@ eren-chatbot/
 
 ## 📜 License
 
-MIT License 
-
----
+This project is licensed under the MIT License - [LICENSE](LICENSE)
 
